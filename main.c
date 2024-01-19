@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include "movement.c"
+#include "shoot.c"
+
 #define altezza 15
 #define lunghezza 31
 #define personaggio "X"
