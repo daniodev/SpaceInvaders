@@ -14,7 +14,7 @@
 
 int main(){
 
-    int left_right;
+    int KEY;
     int punteggio = 0;
     bool running = TRUE;
 
@@ -64,9 +64,9 @@ int main(){
     while (running){
 
 
-        left_right = getch();
+        KEY = getch();
 
-        if(left_right == KEY_LEFT ){
+        if(KEY == KEY_LEFT ){
 
             if(x > 1){
 
@@ -77,7 +77,7 @@ int main(){
             }
         }
 
-        if(left_right == KEY_RIGHT){
+        if(KEY == KEY_RIGHT){
 
             if(x < lunghezza - 1){
 
@@ -88,13 +88,13 @@ int main(){
             }
         }
 
-        if(left_right == 'q'){
+        if(KEY == 'q'){
             running = FALSE;
             clear();
             break;
         }
 
-        if(left_right == KEY_UP){
+        if(KEY == KEY_UP){
 
             for(int i = 1; i < altezza - 2; i++ ){
 
@@ -112,7 +112,7 @@ int main(){
         }
         }
 
-        if(left_right == 'r'){
+        if(KEY == 'r'){
 
             for(int n = 2; n <= nemici;){
 
