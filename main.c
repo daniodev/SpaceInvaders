@@ -23,7 +23,6 @@ int main()
     noecho();
     curs_set(0);
     start_color();
-    init_pair(nemiciSprite_PAIR, COLOR_RED, COLOR_BLACK);
 
     init_pair(nemiciSprite_PAIR, COLOR_RED, COLOR_BLACK);
     init_pair(personaggio_PAIR, COLOR_GREEN, COLOR_BLACK);
@@ -36,12 +35,12 @@ int main()
     mvprintw(altezza - 1, x, personaggioSprite);
     attroff(COLOR_PAIR(personaggio_PAIR));
 
-    int NumNemici = 9;
+    int NumNemici = 6;
     int nemiciy = 3;
 
     nemiciSpawn(nemiciy, NumNemici);
 
-    punteggioUpdate(punteggio);
+    punteggioUpdate(punteggio, NumNemici);
 
     while (running){
         left_right = getch();
@@ -65,23 +64,29 @@ int main()
             break;
         }
 
-        if (left_right == KEY_UP)
-        {
+        if (left_right == KEY_UP){
 
-            for (int i = 1; i < altezza - 2; i++)
-            {
-                chtype PEW = mvinch(altezza - i - 2, x);
-                char helo = PEW & A_CHARTEXT;
-                int asciiHelo = helo;
 
-                refresh();
+            for (int i = 1; i < altezza - 2; i++){
 
-                refresh();
-                if (asciiHelo == 'O')
-                {
+
+                int posizioneNemici = mvinch(altezza - 2 - i, x);
+                char charPosNemici = (char) posizioneNemici;
+
+                if(charPosNemici == nemiciSpriteCh){
                     punteggio++;
-                    mvprintw(0, lunghezza + 2, "Punteggio: %d", punteggio);
+                    punteggioUpdate(punteggio, NumNemici);
+
+                    mvprintw(altezza - 2 -i , x, " ");
+
+                    NumNemici -= 1;
+
+                    break;
+                    refresh();
+                    
                 }
+                
+
                 attron(COLOR_PAIR(personaggio_PAIR));
                 mvprintw(altezza - i - 1, x, proiettileSprite);
                 attroff(COLOR_PAIR(personaggio_PAIR));
@@ -91,22 +96,14 @@ int main()
             }
         }
 
-        if (left_right == 'r')
-        {
-
-            for (int n = 2; n <= NumNemici;)
-            {
-                attron(COLOR_PAIR(nemiciSprite_PAIR));
-                mvprintw(nemiciy, lunghezza / 2 - n + 1, nemiciSprite);
-                mvprintw(nemiciy, lunghezza / 2 + n + 1, nemiciSprite);
-                attroff(COLOR_PAIR(nemiciSprite_PAIR));
-                n += 2;
-            }
+        if (left_right == 'r'){
+            nemiciSpawn(nemiciy, NumNemici);
 
             punteggio = 0;
-            punteggioUpdate(punteggio);
+            NumNemici = 0;
+            punteggioUpdate(punteggio, NumNemici);
         }
-
+        
         refresh();
     }
 

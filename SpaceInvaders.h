@@ -8,6 +8,7 @@
 
 #define personaggioSprite "X"
 #define nemiciSprite "O"
+#define nemiciSpriteCh 'O'
 #define proiettileSprite "^"
 
 
@@ -63,17 +64,20 @@ void game_end(){
 
 void nemiciSpawn(int nemiciy, int NumNemici){
 
-    for (int n = 3; n <= NumNemici;){
+    for (int n = 2; n <= NumNemici;){
 
     attron(COLOR_PAIR(nemiciSprite_PAIR));
+
     mvprintw(nemiciy, lunghezza / 2 - n + 1, nemiciSprite);
     mvprintw(nemiciy, lunghezza / 2 + n + 1, nemiciSprite);
+
     attroff(COLOR_PAIR(nemiciSprite_PAIR));
-    n += 3;
+    n += 2;
 
     }
 }
 
-void punteggioUpdate(int punteggio){
+void punteggioUpdate(int punteggio, int NumNemici){
     mvprintw(0, lunghezza + 2, "Punteggio: %d", punteggio);
+    mvprintw(1, lunghezza + 2, "Nemici: %d", NumNemici);
 }
