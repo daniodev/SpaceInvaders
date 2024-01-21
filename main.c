@@ -68,9 +68,16 @@ int main()
                 int posizioneColpo = mvinch(altezza - 2 - i, x);
                 char charPosizioneColpo = (char) posizioneColpo;
 
-                colpoVeify(x, i, punteggio, NumNemici, charPosizioneColpo, posizioneColpo);
                 if(charPosizioneColpo == nemiciSpriteCh){
-                break;
+
+                    punteggio++;
+                    NumNemici--;
+                    punteggioUpdate(punteggio, NumNemici);
+                    mvprintw(altezza - 2 -i , x, " ");
+
+                    refresh();
+                    break;
+
                 }
                 shoot(x, i);
 

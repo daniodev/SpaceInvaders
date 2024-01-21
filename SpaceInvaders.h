@@ -80,6 +80,8 @@ void nemiciSpawn(int nemiciy, int NumNemici){
 
     for (int n = 2; n <= NumNemici;){
 
+    colorOn(COLOR_RED);
+
     mvprintw(nemiciy, lunghezza / 2 - n + 1, nemiciSprite);
     mvprintw(nemiciy, lunghezza / 2 + n + 1, nemiciSprite);
 
@@ -94,18 +96,5 @@ void punteggioUpdate(int punteggio, int NumNemici){
 
     mvprintw(0, lunghezza + 2, "Punteggio: %d", punteggio);
     mvprintw(1, lunghezza + 2, "Nemici: %d", NumNemici);
-}
 
-void colpoVeify(int x, int i, int punteggio, int NumNemici, char charPosizioneColpo, int posizioneColpo){
-
-    if(charPosizioneColpo == nemiciSpriteCh){
-
-    punteggio++;
-    punteggioUpdate(punteggio, NumNemici);
-    mvprintw(altezza - 2 -i , x, " ");
-
-    NumNemici -= 1;
-    refresh();
-                    
-    }
 }
