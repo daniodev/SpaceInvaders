@@ -10,12 +10,12 @@
                                                                                                                
                                                                                                                
                                                                                                                
-# MIGLIORARE LA SINTASSI
-# AGGIUNGERE FUNZIONI
+# MIGLIORARE LA SINTASSI //FATTO DANI
+# AGGIUNGERE FUNZIONI //FATTO DANI
+# SISTEMARE PUNTEGGIO //FATO PAOLO
 
 # AGGIUNGERE MENU'
 
-# SISTEMARE PUNTEGGIO
 # AGGIUNGERE MOVIMENTO NEMICI
 # AGGIUNGERE SPARO NEMICI
 

@@ -25,36 +25,50 @@ void gameBox(){
     }
 }
 
+void colorOn(chtype ch){
+
+    if(ch == COLOR_RED){
+        init_pair(1, COLOR_RED, COLOR_BLACK);
+        attron(COLOR_PAIR(1));
+    }
+
+    if(ch == COLOR_WHITE){
+        init_pair(2, COLOR_WHITE, COLOR_BLACK);
+        attron(COLOR_PAIR(2));
+    }
+
+    if(ch == COLOR_GREEN){
+        init_pair(3, COLOR_GREEN, COLOR_BLACK);
+        attron(COLOR_PAIR(3)); 
+    }
+
+}
+
 
 void movement_left(int x){
 
-    attron(COLOR_PAIR(personaggio_PAIR));
+    colorOn(COLOR_GREEN);
     mvprintw(altezza - 1, x - 1, personaggioSprite);
     mvprintw(altezza - 1, x, " ");
-    attroff(COLOR_PAIR(personaggio_PAIR));
 
 }
 
 void movement_right(int x){
 
-    attron(COLOR_PAIR(personaggio_PAIR));
+    colorOn(COLOR_GREEN);
     mvprintw(altezza - 1, x + 1, personaggioSprite);
     mvprintw(altezza - 1, x, " ");
-    attroff(COLOR_PAIR(personaggio_PAIR));
 
 }
 
-void shoot(int x){
+void shoot(int x, int i){
 
-    for (int i = 1; i < altezza - 2; i++){
-
-    attron(COLOR_PAIR(personaggio_PAIR));
+    colorOn(COLOR_GREEN);
     mvprintw(altezza - i - 1, x, proiettileSprite);
-    attroff(COLOR_PAIR(personaggio_PAIR));
     refresh();
     mvprintw(altezza - i - 1, x, " ");
-    delay_output(50);     
-    }
+    delay_output(50);
+    
 }
 
 void game_end(){
@@ -66,18 +80,32 @@ void nemiciSpawn(int nemiciy, int NumNemici){
 
     for (int n = 2; n <= NumNemici;){
 
-    attron(COLOR_PAIR(nemiciSprite_PAIR));
-
     mvprintw(nemiciy, lunghezza / 2 - n + 1, nemiciSprite);
     mvprintw(nemiciy, lunghezza / 2 + n + 1, nemiciSprite);
 
-    attroff(COLOR_PAIR(nemiciSprite_PAIR));
     n += 2;
 
     }
 }
 
 void punteggioUpdate(int punteggio, int NumNemici){
+
+    colorOn(COLOR_WHITE);
+
     mvprintw(0, lunghezza + 2, "Punteggio: %d", punteggio);
     mvprintw(1, lunghezza + 2, "Nemici: %d", NumNemici);
+}
+
+void colpoVeify(int x, int i, int punteggio, int NumNemici, char charPosizioneColpo, int posizioneColpo){
+
+    if(charPosizioneColpo == nemiciSpriteCh){
+
+    punteggio++;
+    punteggioUpdate(punteggio, NumNemici);
+    mvprintw(altezza - 2 -i , x, " ");
+
+    NumNemici -= 1;
+    refresh();
+                    
+    }
 }
