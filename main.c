@@ -85,10 +85,9 @@ int main()
         }
 
         if (left_right == 'r'){
+            NumNemici = 6;
             nemiciSpawn(nemiciy, NumNemici);
-
             punteggio = 0;
-            NumNemici = 0;
             punteggioUpdate(punteggio, NumNemici);
             refresh();
         }
